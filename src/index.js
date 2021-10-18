@@ -1,17 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import GlobalFonts from './fonts/fonts';
+const Global = createGlobalStyle`*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arabic";
+  font-style: normal;
+  font-weight: normal;
+  
+}`;
 
+const theme = {
+  media: {
+    phone: '(max-width: 425px)',
+    tablet: '(max-width: 768px) and (min-width: 425px)',
+  },
+};
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalFonts />
+      <Global />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
